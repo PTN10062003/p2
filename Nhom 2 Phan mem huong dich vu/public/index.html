@@ -14,8 +14,16 @@
 
 <body>
     <header>
-        <h1>Quản lý khách hàng</h1>
-        <h2>Project</h2>
+        <div class="wrapper">
+            <nav>
+        <div class="logo">Quản lý khách hàng</div>
+        </nav>
+
+            <div class="pagename">Project</div>
+            <button class="btn">Add New</button>
+            <button class="btn">Import</button>
+    </div>
+
     </header>
     <nav>
        <ul>
@@ -34,8 +42,9 @@
     </ul>
     </nav>
     <div class="container">
-        <button class="btn">Add New</button>
-        <button class="btn">Import</button>
+        
+    
+
         <div class="search-bar">
            
             <input type="text" id="input" class = "search-input" placeholder="Search">
@@ -76,29 +85,26 @@
     </div>
 
     <script>
-        document.getElementById("searchButton").addEventListener("click"), function () {
-          
+        document.getElementById("searchButton").addEventListener("click", function () {
             
+            var searchText = document.getElementById("input").value.toLowerCase();
+            
+            
+            var rows = document.querySelectorAll("tbody tr");
 
-          var input, filter, table, tr, td, i, txtValue;
-          input = document.getElementById("input");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("table");
-          tr = table.getElementsByTagName("tr");
-        
           
-          for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-              txtValue = td.textContent || td.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-              } else {
-                tr[i].style.display = "none";
-              }
-            }
-          }
-        }
+            rows.forEach(function(row) {
+                
+                var rowText = row.textContent.toLowerCase();
+                
+                
+                if (rowText.includes(searchText)) {
+                    row.style.display = ""; 
+                } else {
+                    row.style.display = "none"; 
+                }
+            });
+        });
 
         </script>
 
